@@ -1,5 +1,5 @@
 ## 👋 What is this??
-progressBarSitewas born out of pure necessity for me. Between assignments, project deadlines, and everything else life throws at you, it's easy to lose track of what still needs to get done. Instead of scattered sticky notes and forgotten to-do lists, this is a clean, distraction-free space to lay out your week, tick things off, and actually *see* yourself making progress.Highly inspired by the kanban methodology.
+weekTasks was born out of pure necessity for my part. Between assignments, project deadlines, and everything else life throws at you, it's easy to lose track of what still needs to get done. Instead of scattered sticky notes and forgotten to-do lists, this is a clean, distraction-free space to lay out your week, tick things off, and actually *see* yourself making progress.Highly inspired by the kanban methodology.
 
 It lives in your browser. No sign-up. No account. Just open it and go.
 
