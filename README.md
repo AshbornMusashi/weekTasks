@@ -86,4 +86,4 @@ Your tasks are saved in your browser's **localStorage** — a small storage area
 
 ---
 
-Thx for trying it out.
+Thx for trying it out!!
