@@ -4,7 +4,6 @@ const $ = id => document.getElementById(id);
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-/* ── Week helpers ─────────────────────────────── */
 function isoWeekKey() {
   const d    = new Date();
   const tmp  = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -95,9 +94,7 @@ function renderList(listId, items) {
   });
 }
 
-/* ═══════════════════════════════════════════════
-   ADD TASK
-═══════════════════════════════════════════════ */
+
 function addTask() {
   const input = $('new-task-input');
   const text  = input.value.trim();
@@ -111,29 +108,13 @@ function addTask() {
 $('add-btn').addEventListener('click', addTask);
 $('new-task-input').addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
 
-/* ═══════════════════════════════════════════════
-   DRAG & DROP — Pointer Events API
-   pointerdown → pointermove → pointerup
-   setPointerCapture keeps events flowing even when
-   the cursor leaves the element or the window.
-═══════════════════════════════════════════════ */
 const ghost     = $('drag-ghost');
 const ghostText = $('ghost-text');
 
 const THRESHOLD = 6; // px movement before drag activates
 
 let drag = null;
-/*  drag = {
-      taskId, el,
-      startX, startY,
-      offsetX, offsetY,   ← cursor offset within the item
-      active,             ← threshold crossed?
-      placeholder,
-      currentCol          ← 'todo' | 'done' | null
-    }
-*/
-
-/* find which .col element is under (x, y) */
+/
 function colAtPoint(x, y) {
   for (const col of document.querySelectorAll('.col')) {
     const r = col.getBoundingClientRect();
@@ -142,7 +123,7 @@ function colAtPoint(x, y) {
   return null;
 }
 
-/* find which task-item the placeholder should go before */
+
 function insertBefore(list, y) {
   for (const item of list.querySelectorAll('.task-item:not(.is-dragging)')) {
     const r = item.getBoundingClientRect();
@@ -150,8 +131,6 @@ function insertBefore(list, y) {
   }
   return null; // → append
 }
-
-/* move placeholder into correct position without unnecessary DOM changes */
 function movePlaceholder(col, y) {
   const list   = col.querySelector('.task-list');
   const ph     = drag.placeholder;
@@ -186,18 +165,17 @@ document.addEventListener('pointerdown', e => {
     currentCol:  null,
   };
 
-  // pointer capture: keeps events even outside the window
+
   item.setPointerCapture(e.pointerId);
 }, { passive: true });
 
-/* ── pointermove ── */
+
 document.addEventListener('pointermove', e => {
   if (!drag) return;
 
   const dx = e.clientX - drag.startX;
   const dy = e.clientY - drag.startY;
 
-  /* activate once threshold crossed */
   if (!drag.active) {
     if (Math.hypot(dx, dy) < THRESHOLD) return;
     drag.active = true;
@@ -280,7 +258,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* prevent scroll while dragging on touch devices */
+
 document.addEventListener('touchmove', e => {
   if (drag?.active) e.preventDefault();
 }, { passive: false });
