@@ -22,7 +22,7 @@ It lives in your browser. No sign-up. No account. Just open it and go.
 You only need three files in the same folder:
 
 ```
-progressBarSite/
+weekTasks/
 ├── index.html
 ├── style.css
 └── main.js
